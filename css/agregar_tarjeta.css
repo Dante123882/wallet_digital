@@ -1,0 +1,61 @@
+body {
+    background: #0d0f12;
+    font-family: "Poppins", sans-serif;
+    color: white;
+}
+
+form {
+    background: #13161b;
+    width: 90%;
+    max-width: 450px;
+    margin: 40px auto;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    animation: fadeUp 0.7s ease;
+}
+
+label {
+    font-weight: bold;
+    margin-top: 15px;
+    display: block;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    background: #1f232b;
+    border: 1px solid #2c323c;
+    color: white;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+input:focus, select:focus {
+    border-color: #4f7dff;
+    box-shadow: 0 0 5px #4f7dff;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: #4f7dff;
+    border: none;
+    color: white;
+    margin-top: 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #6f92ff;
+    transform: translateY(-2px);
+}
+
+/* animación */
+@keyframes fadeUp {
+    from { opacity:0; transform:translateY(25px); }
+    to { opacity:1; transform:translateY(0); }
+}

@@ -1,0 +1,53 @@
+body {
+    background: #0d0f12;
+    font-family: "Poppins", sans-serif;
+}
+
+.wallet-card {
+    margin-top: 80px;
+    background: #13161b;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 0 18px rgba(0,0,0,0.35);
+    animation: fadeUp 0.7s ease;
+}
+
+.wallet-image {
+    animation: float 3s ease-in-out infinite;
+}
+
+.btn-wallet {
+    background: #4f7dff;
+    color: white;
+    padding: 12px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.btn-wallet:hover {
+    background: #6f92ff;
+}
+
+.btn-outline-wallet {
+    border: 2px solid #4f7dff;
+    color: #4f7dff;
+    padding: 12px;
+    border-radius: 10px;
+}
+
+.btn-outline-wallet:hover {
+    background: #4f7dff;
+    color: white;
+}
+
+/* Animaciones */
+@keyframes fadeUp {
+    from { opacity:0; transform:translateY(25px); }
+    to { opacity:1; transform:translateY(0); }
+}
+
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
