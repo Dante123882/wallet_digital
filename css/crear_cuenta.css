@@ -1,49 +1,144 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    background: #0d0f12;
-    font-family: "Poppins", sans-serif;
-    color: white;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: radial-gradient(circle at top, #141a35, #080a1a);
+    color: #fff;
+    overflow: hidden;
 }
 
-form {
-    width: 90%;
-    max-width: 450px;
-    background: #13161b;
-    margin: 40px auto;
-    padding: 28px;
-    border-radius: 12px;
-    animation: fadeUp 0.6s ease;
+/* Fondo animado */
+.glow-bg {
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(
+        from 90deg,
+        #23306d,
+        #1b2454,
+        #0d1028,
+        #23306d
+    );
+    animation: spin-bg 18s linear infinite;
+    z-index: 0;
+    opacity: 0.25;
 }
 
+@keyframes spin-bg {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Contenedor */
+.register-container {
+    position: relative;
+    z-index: 2;
+    width: 420px;
+    margin: 80px auto;
+    padding: 40px 35px;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(12px);
+    border-radius: 22px;
+    border: 1px solid rgba(79, 125, 255, 0.25);
+    box-shadow: 0 0 40px rgba(79, 125, 255, 0.18);
+    animation: fadeIn 1s ease;
+}
+
+/* Título */
+.register-title {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 25px;
+    background: linear-gradient(135deg, #ffffff, #96b3ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Textos */
 label {
     display: block;
-    margin-top: 12px;
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: #b8c7e8;
 }
 
-input {
+/* Inputs */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="file"] {
     width: 100%;
-    padding: 10px;
-    background: #1f232b;
-    border: 1px solid #2c323c;
-    border-radius: 6px;
-    color: white;
+    padding: 14px;
+    margin-bottom: 18px;
+    border-radius: 10px;
+    border: 1px solid rgba(79, 125, 255, 0.3);
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    font-size: 15px;
+    outline: none;
+    transition: 0.3s ease;
 }
 
-button {
+input:focus {
+    border-color: #4f7dff;
+    box-shadow: 0 0 15px rgba(79, 125, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Botón */
+.btn-register {
     width: 100%;
-    background: #4f7dff;
-    padding: 12px;
-    border-radius: 6px;
+    padding: 15px;
+    border-radius: 12px;
     border: none;
-    margin-top: 20px;
+    background: linear-gradient(135deg, #4f7dff, #6f92ff);
+    color: #fff;
+    font-size: 17px;
     font-weight: bold;
     cursor: pointer;
+    box-shadow: 0 10px 30px rgba(79, 125, 255, 0.35);
+    transition: 0.3s ease;
 }
 
-button:hover {
-    background: #6f92ff;
+.btn-register:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(79, 125, 255, 0.55);
 }
 
-@keyframes fadeUp {
-    from { opacity:0; transform:translateY(20px); }
-    to { opacity:1; transform:translateY(0); }
+/* Footer */
+.register-footer {
+    text-align: center;
+    margin-top: 18px;
+}
+
+.register-footer a {
+    color: #8faaff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.register-footer a:hover {
+    text-shadow: 0 0 10px rgba(139, 170, 255, 0.7);
+}
+
+/* Animación */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(35px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .register-container {
+        width: 90%;
+        margin-top: 70px;
+        padding: 30px 25px;
+    }
 }

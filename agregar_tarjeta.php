@@ -17,6 +17,7 @@
     </div>
 
     <div class="nav-right">
+        <a class="logout-btn" href="mis_tarjetas.php">Mis tarjetas</a>
         <a class="logout-btn" href="logout.php">Cerrar Sesión</a>
     </div>
 </header>

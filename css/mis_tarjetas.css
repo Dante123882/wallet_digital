@@ -22,7 +22,7 @@ body {
     background: #13161b;
     padding: 15px;
     border-radius: 12px;
-    display: flex;
+    display: block;
     align-items: center;
     gap: 15px;
     transition: 0.3s;
@@ -56,4 +56,88 @@ body {
 @keyframes fadeUp {
     from { opacity:0; transform:translateY(25px); }
     to { opacity:1; transform:translateY(0); }
+}
+
+/* --- Agrega esto al final de css/mis_tarjetas.css --- */
+
+/* Estilo para tarjetas desactivadas */
+.tarjeta-item.inactiva {
+    filter: grayscale(100%); /* La vuelve blanco y negro */
+    opacity: 0.6; /* La hace semi-transparente */
+    border: 1px solid #444; /* Borde gris opaco */
+}
+
+/* Botón de activar/desactivar */
+.form-toggle {
+    margin-left: auto; /* Empuja el botón a la derecha */
+}
+
+.btn-estado {
+    background: transparent;
+    border: none;
+    color: #4f7dff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-estado:hover {
+    color: #fff;
+    transform: scale(1.1);
+}
+
+/* Si la tarjeta está inactiva, el botón se ve diferente para que resalte */
+.tarjeta-item.inactiva .btn-estado {
+    color: #888;
+}
+.tarjeta-item.inactiva .btn-estado:hover {
+    color: #4fffad; /* Verde para sugerir "activar" */
+}
+
+/* --- PEGAR AL FINAL DE css/mis_tarjetas.css --- */
+
+/* Contenedor para alinear número y ojo */
+.numero-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espacio entre números y el ojo */
+    margin-bottom: 10px; /* Separación con el saldo */
+}
+
+.numero {
+    font-family: monospace; /* Fuente tipo hacker para números */
+    font-size: 1rem;
+    letter-spacing: 1px;
+    margin: 0 !important; /* Quitamos margen porque ya lo maneja el wrapper */
+}
+
+/* Estilo del botón Ojo */
+.btn-ojo {
+    background: none;
+    border: none;
+    color: #6c757d; /* Gris discreto */
+    cursor: pointer;
+    padding: 0;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.btn-ojo:hover {
+    color: #4f7dff; /* Azul al pasar el mouse */
+}
+
+/* Estilos previos de tarjeta desactivada... */
+.tarjeta-item.inactiva {
+    filter: grayscale(100%);
+    opacity: 0.6;
+}
+.form-toggle {
+    margin-left: auto;
+}
+.btn-estado {
+    background: transparent;
+    border: none;
+    color: #4f7dff;
+    font-size: 1.5rem;
+    cursor: pointer;
 }
