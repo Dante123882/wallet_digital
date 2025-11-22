@@ -1,44 +1,488 @@
-body {
-    background: #0d0f12;
-    color: white;
-    font-family: "Poppins", sans-serif;
+/* ============================================================
+   RESET GENERAL
+============================================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+body {
+    font-family: "Poppins", sans-serif;
+    background: #0d0f12;
+    color: #8da6c6;
+    overflow-x: hidden;
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* ============================================================
+   PARTÍCULAS ANIMADAS
+============================================================ */
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: rgba(79, 125, 255, 0.6);
+    border-radius: 50%;
+    animation: float-particle linear infinite;
+    box-shadow: 0 0 10px rgba(79, 125, 255, 0.8);
+}
+
+@keyframes float-particle {
+    0% {
+        transform: translateY(100vh) scale(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) scale(1) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* ============================================================
+   GRADIENTE ANIMADO
+============================================================ */
+.gradient-bg {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #0d0f12, #13161b, #0d0f12, #1a1f2e);
+    background-size: 400% 400%;
+    animation: gradient-shift 15s ease infinite;
+    z-index: 0;
+}
+
+@keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ============================================================
+   CONTENEDOR DEL PERFIL
+============================================================ */
 .perfil-container {
-    width: 90%;
-    max-width: 500px;
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+    width: 100%;
     background: #13161b;
-    padding: 35px;
-    margin: 40px auto;
-    border-radius: 14px;
-    animation: fadeUp 0.7s ease;
+    border: 1px solid rgba(79, 125, 255, 0.3);
+    border-radius: 30px;
+    padding: 50px 40px;
+    box-shadow: 
+        0 25px 70px rgba(0, 0, 0, 0.5),
+        0 0 60px rgba(79, 125, 255, 0.2);
+    animation: fadeUp 0.8s ease;
+    overflow: hidden;
+}
+
+.perfil-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(79, 125, 255, 0.05), transparent);
+    transform: rotate(45deg);
+    animation: shimmer 4s infinite;
+    pointer-events: none;
+}
+
+@keyframes shimmer {
+    0% { transform: rotate(45deg) translateY(-100%); }
+    100% { transform: rotate(45deg) translateY(100%); }
+}
+
+/* ============================================================
+   TÍTULO
+============================================================ */
+.perfil-container h1 {
     text-align: center;
+    font-size: 42px;
+    font-weight: bold;
+    background: linear-gradient(135deg, #4f7dff, #7b9eff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 1;
+    animation: fadeDown 0.8s ease;
+    text-shadow: 0 0 40px rgba(79, 125, 255, 0.3);
+}
+
+/* ============================================================
+   CONTENEDOR DE FOTO
+============================================================ */
+.foto-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 1;
+    animation: fadeIn 1s ease 0.2s backwards;
 }
 
 .perfil-foto {
-    width: 130px;
-    height: 130px;
+    width: 180px;
+    height: 180px;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid #4f7dff;
+    border: 5px solid #4f7dff;
+    box-shadow: 
+        0 0 40px rgba(79, 125, 255, 0.8),
+        0 0 80px rgba(79, 125, 255, 0.4),
+        0 15px 50px rgba(0, 0, 0, 0.5);
+    transition: all 0.4s ease;
+    animation: pulse-avatar 2s ease-in-out infinite;
 }
 
-.btn-volver {
+@keyframes pulse-avatar {
+    0%, 100% {
+        box-shadow: 
+            0 0 40px rgba(79, 125, 255, 0.8),
+            0 0 80px rgba(79, 125, 255, 0.4),
+            0 15px 50px rgba(0, 0, 0, 0.5);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 
+            0 0 60px rgba(79, 125, 255, 1),
+            0 0 120px rgba(79, 125, 255, 0.6),
+            0 20px 60px rgba(0, 0, 0, 0.6);
+        transform: scale(1.05);
+    }
+}
+
+.perfil-foto:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 
+        0 0 80px rgba(79, 125, 255, 1),
+        0 0 150px rgba(79, 125, 255, 0.8),
+        0 25px 70px rgba(0, 0, 0, 0.7);
+}
+
+/* ============================================================
+   INFORMACIÓN DEL PERFIL
+============================================================ */
+.perfil-container p {
+    background: rgba(79, 125, 255, 0.05);
+    padding: 20px 25px;
+    margin-bottom: 18px;
+    border-radius: 15px;
+    border: 1px solid rgba(79, 125, 255, 0.2);
+    font-size: 16px;
+    color: #8da6c6;
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease;
+    animation: fadeIn 1s ease backwards;
+}
+
+.perfil-container p:nth-of-type(1) { animation-delay: 0.3s; }
+.perfil-container p:nth-of-type(2) { animation-delay: 0.4s; }
+.perfil-container p:nth-of-type(3) { animation-delay: 0.5s; }
+
+.perfil-container p:hover {
+    background: rgba(79, 125, 255, 0.1);
+    border-color: rgba(79, 125, 255, 0.4);
+    transform: translateX(10px);
+    box-shadow: 0 5px 20px rgba(79, 125, 255, 0.2);
+}
+
+.perfil-container p strong {
+    color: #4f7dff;
+    font-weight: 600;
     display: inline-block;
-    margin-top: 20px;
-    padding: 10px 18px;
-    background: #4f7dff;
-    border-radius: 8px;
+    min-width: 180px;
+}
+
+/* ============================================================
+   BOTÓN VOLVER
+============================================================ */
+.btn-volver {
+    display: block;
+    width: 100%;
+    padding: 18px;
+    margin-top: 35px;
+    background: linear-gradient(135deg, #4f7dff, #6f92ff);
     color: white;
+    text-align: center;
     text-decoration: none;
+    border-radius: 15px;
+    font-size: 18px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 
+        0 8px 25px rgba(79, 125, 255, 0.4),
+        0 0 40px rgba(79, 125, 255, 0.2);
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    animation: fadeIn 1s ease 0.6s backwards;
+}
+
+.btn-volver::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn-volver:hover::before {
+    width: 400px;
+    height: 400px;
 }
 
 .btn-volver:hover {
-    background: #6f92ff;
+    transform: translateY(-3px);
+    box-shadow: 
+        0 12px 35px rgba(79, 125, 255, 0.6),
+        0 0 60px rgba(79, 125, 255, 0.4);
 }
 
-/* Animación */
+.btn-volver:active {
+    transform: translateY(-1px);
+}
+
+/* ============================================================
+   DECORACIÓN ADICIONAL
+============================================================ */
+.perfil-container::after {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(79, 125, 255, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* ============================================================
+   ANIMACIONES
+============================================================ */
 @keyframes fadeUp {
-    from { opacity:0; transform:translateY(25px); }
-    to { opacity:1; transform:translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* ============================================================
+   ICONO DECORATIVO (OPCIONAL)
+============================================================ */
+.profile-icon {
+    text-align: center;
+    font-size: 64px;
+    background: linear-gradient(135deg, #4f7dff, #7b9eff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 20px rgba(79, 125, 255, 0.5));
+    }
+    50% {
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 40px rgba(79, 125, 255, 0.8));
+    }
+}
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+@media (max-width: 768px) {
+    .perfil-container {
+        padding: 40px 30px;
+        max-width: 500px;
+    }
+
+    .perfil-container h1 {
+        font-size: 36px;
+    }
+
+    .perfil-foto {
+        width: 150px;
+        height: 150px;
+    }
+
+    .perfil-container p {
+        padding: 18px 20px;
+        font-size: 15px;
+    }
+
+    .perfil-container p strong {
+        min-width: 150px;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .btn-volver {
+        padding: 16px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 15px;
+    }
+
+    .perfil-container {
+        padding: 30px 20px;
+    }
+
+    .perfil-container h1 {
+        font-size: 32px;
+        margin-bottom: 30px;
+    }
+
+    .perfil-foto {
+        width: 130px;
+        height: 130px;
+        border-width: 4px;
+    }
+
+    .perfil-container p {
+        padding: 15px 18px;
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+
+    .perfil-container p strong {
+        font-size: 14px;
+    }
+}
+
+/* ============================================================
+   EFECTOS ADICIONALES
+============================================================ */
+
+/* Glow effect en el contenedor */
+.perfil-container:hover {
+    box-shadow: 
+        0 30px 80px rgba(0, 0, 0, 0.6),
+        0 0 80px rgba(79, 125, 255, 0.3);
+}
+
+/* Línea decorativa superior */
+.perfil-container h1::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #4f7dff, #7b9eff);
+    margin: 20px auto 0;
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(79, 125, 255, 0.5);
+}
+
+/* Efecto de typing en el título (opcional) */
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+/* Estado de carga del botón (opcional) */
+.btn-volver.loading {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.btn-volver.loading::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    left: 50%;
+    margin-left: -10px;
+    margin-top: -10px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Efecto de brillo en texto */
+.shimmer-text {
+    background: linear-gradient(90deg, 
+        #4f7dff 0%, 
+        #7b9eff 25%, 
+        #4f7dff 50%, 
+        #7b9eff 75%, 
+        #4f7dff 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer-text 3s linear infinite;
+}
+
+@keyframes shimmer-text {
+    to {
+        background-position: 200% center;
+    }
 }

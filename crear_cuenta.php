@@ -35,6 +35,8 @@
 
             <div class="register-footer">
                 <a href="login.php">¿Ya tienes cuenta? Inicia sesión</a>
+                <br>
+                <a href="usuario.php" class="btn-volver">← Volver </a>
             </div>
 
         </form>

@@ -1,61 +1,601 @@
-body {
-    background: #0d0f12;
-    font-family: "Poppins", sans-serif;
-    color: white;
+/* ============================================================
+   RESET GENERAL
+============================================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #0a0e27;
+    color: #fff;
+    overflow-x: hidden;
+    min-height: 100vh;
+    position: relative;
+    padding-top: 100px;
+}
+
+/* ============================================================
+   NAVBAR FIJO - FORZADO
+============================================================ */
+.navbar {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    height: 70px !important;
+    background: rgba(30, 39, 73, 0.8) !important;
+    backdrop-filter: blur(15px) !important;
+    border-bottom: 1px solid rgba(79, 125, 255, 0.3) !important;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 0 40px !important;
+    z-index: 1000 !important;
+    transform: none !important;
+    transition: none !important;
+}
+
+header.navbar {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+}
+
+.nav-left {
+    display: flex !important;
+    align-items: center !important;
+    gap: 20px !important;
+}
+
+.nav-left a {
+    color: #fff !important;
+    text-decoration: none !important;
+    font-size: 24px !important;
+    width: 45px !important;
+    height: 45px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 12px !important;
+    transition: all 0.3s ease !important;
+    background: rgba(79, 125, 255, 0.1) !important;
+    border: 1px solid rgba(79, 125, 255, 0.2) !important;
+}
+
+.nav-left a:hover {
+    background: rgba(79, 125, 255, 0.3) !important;
+    border-color: rgba(79, 125, 255, 0.5) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 5px 20px rgba(79, 125, 255, 0.4) !important;
+}
+
+.nav-right {
+    display: flex !important;
+    align-items: center !important;
+    gap: 15px !important;
+}
+
+.logout-btn {
+    padding: 12px 25px !important;
+    background: linear-gradient(135deg, #4f7dff, #6f92ff) !important;
+    color: white !important;
+    text-decoration: none !important;
+    border-radius: 12px !important;
+    font-weight: 600 !important;
+    font-size: 15px !important;
+    transition: all 0.3s ease !important;
+    border: 1px solid rgba(79, 125, 255, 0.3) !important;
+    box-shadow: 0 5px 20px rgba(79, 125, 255, 0.3) !important;
+}
+
+.logout-btn:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 30px rgba(79, 125, 255, 0.5) !important;
+}
+
+/* ============================================================
+   PARTÍCULAS ANIMADAS
+============================================================ */
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: rgba(79, 125, 255, 0.6);
+    border-radius: 50%;
+    animation: float-particle linear infinite;
+    box-shadow: 0 0 10px rgba(79, 125, 255, 0.8);
+}
+
+@keyframes float-particle {
+    0% {
+        transform: translateY(100vh) scale(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) scale(1) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* ============================================================
+   GRADIENTE ANIMADO
+============================================================ */
+.gradient-bg {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #0a0e27, #1a1f3a, #0a0e27, #1a2847);
+    background-size: 400% 400%;
+    animation: gradient-shift 15s ease infinite;
+    z-index: 0;
+}
+
+@keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ============================================================
+   CONTENEDOR DEL FORMULARIO
+============================================================ */
+.form-container {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto 50px auto;
+    padding: 50px 40px;
+    background: rgba(30, 39, 73, 0.7);
+    backdrop-filter: blur(20px);
+    border-radius: 30px;
+    border: 1px solid rgba(79, 125, 255, 0.3);
+    box-shadow: 
+        0 25px 70px rgba(0, 0, 0, 0.5),
+        0 0 60px rgba(79, 125, 255, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    animation: fadeUp 0.8s ease;
+}
+
+.form-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(79, 125, 255, 0.05), transparent);
+    transform: rotate(45deg);
+    animation: shimmer 4s infinite;
+    pointer-events: none;
+}
+
+@keyframes shimmer {
+    0% { transform: rotate(45deg) translateY(-100%); }
+    100% { transform: rotate(45deg) translateY(100%); }
+}
+
+/* ============================================================
+   TÍTULO DEL FORMULARIO
+============================================================ */
+.form-title {
+    text-align: center;
+    font-size: 38px;
+    font-weight: bold;
+    background: linear-gradient(135deg, #fff, #a8c0ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 15px;
+    text-shadow: 0 0 40px rgba(79, 125, 255, 0.5);
+    animation: fadeDown 0.8s ease;
+}
+
+.form-subtitle {
+    text-align: center;
+    color: #a8b8d8;
+    font-size: 16px;
+    margin-bottom: 40px;
+    animation: fadeDown 0.8s ease 0.1s backwards;
+}
+
+/* ============================================================
+   FORMULARIO
+============================================================ */
 form {
-    background: #13161b;
-    width: 90%;
-    max-width: 450px;
-    margin: 40px auto;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.3);
-    animation: fadeUp 0.7s ease;
+    position: relative;
+    z-index: 1;
 }
 
 label {
-    font-weight: bold;
-    margin-top: 15px;
     display: block;
+    font-size: 15px;
+    font-weight: 600;
+    color: #a8c0ff;
+    margin-bottom: 10px;
+    margin-top: 25px;
+    letter-spacing: 0.5px;
+    animation: fadeIn 0.5s ease;
 }
 
-input, select {
+label:first-of-type {
+    margin-top: 0;
+}
+
+/* ============================================================
+   INPUTS Y SELECT - EFECTO NEÓN
+============================================================ */
+input[type="text"],
+input[type="date"],
+input[type="number"],
+select {
     width: 100%;
-    padding: 10px;
-    background: #1f232b;
-    border: 1px solid #2c323c;
-    color: white;
-    border-radius: 6px;
-    transition: 0.3s;
+    padding: 16px 20px;
+    background: rgba(19, 22, 27, 0.8);
+    border: 2px solid rgba(79, 125, 255, 0.3);
+    border-radius: 15px;
+    color: #fff;
+    font-size: 16px;
+    font-family: 'Segoe UI', sans-serif;
+    transition: all 0.3s ease;
+    outline: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-input:focus, select:focus {
+input[type="text"]:focus,
+input[type="date"]:focus,
+input[type="number"]:focus,
+select:focus {
     border-color: #4f7dff;
-    box-shadow: 0 0 5px #4f7dff;
-}
-
-button {
-    width: 100%;
-    padding: 12px;
-    background: #4f7dff;
-    border: none;
-    color: white;
-    margin-top: 20px;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-button:hover {
-    background: #6f92ff;
+    background: rgba(19, 22, 27, 0.95);
+    box-shadow: 
+        0 0 25px rgba(79, 125, 255, 0.5),
+        0 8px 20px rgba(0, 0, 0, 0.3);
     transform: translateY(-2px);
 }
 
-/* animación */
+input[type="text"]:hover,
+input[type="date"]:hover,
+input[type="number"]:hover,
+select:hover {
+    border-color: rgba(79, 125, 255, 0.5);
+}
+
+/* Placeholder con efecto */
+input::placeholder {
+    color: rgba(168, 184, 216, 0.5);
+    font-family: 'Courier New', monospace;
+    letter-spacing: 2px;
+}
+
+/* Select personalizado */
+select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%234f7dff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    padding-right: 50px;
+}
+
+select option {
+    background: #1a1f3a;
+    color: #fff;
+    padding: 10px;
+}
+
+/* Input de número sin flechas molestas */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+/* ============================================================
+   BOTÓN DE ENVÍO - EFECTO 3D Y NEÓN
+============================================================ */
+button[type="submit"] {
+    width: 100%;
+    padding: 18px;
+    margin-top: 35px;
+    background: linear-gradient(135deg, #4f7dff, #6f92ff);
+    border: none;
+    border-radius: 15px;
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 
+        0 8px 25px rgba(79, 125, 255, 0.5),
+        0 0 40px rgba(79, 125, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+button[type="submit"]::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+button[type="submit"]:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+button[type="submit"]:hover {
+    transform: translateY(-3px);
+    box-shadow: 
+        0 12px 35px rgba(79, 125, 255, 0.7),
+        0 0 60px rgba(79, 125, 255, 0.5);
+}
+
+button[type="submit"]:active {
+    transform: translateY(-1px);
+    box-shadow: 
+        0 5px 20px rgba(79, 125, 255, 0.6),
+        0 0 30px rgba(79, 125, 255, 0.4);
+}
+
+/* ============================================================
+   PREVIEW DE TARJETA (OPCIONAL)
+============================================================ */
+.card-preview {
+    margin-top: 30px;
+    padding: 25px;
+    background: rgba(79, 125, 255, 0.05);
+    border: 1px solid rgba(79, 125, 255, 0.2);
+    border-radius: 20px;
+    text-align: center;
+    animation: fadeIn 0.5s ease;
+}
+
+.card-preview-title {
+    font-size: 16px;
+    color: #a8b8d8;
+    margin-bottom: 15px;
+}
+
+.bank-logo-preview {
+    max-width: 150px;
+    max-height: 80px;
+    border-radius: 10px;
+    opacity: 0.8;
+    transition: all 0.3s;
+}
+
+.bank-logo-preview:hover {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+/* ============================================================
+   VALIDACIÓN VISUAL
+============================================================ */
+input:valid {
+    border-color: rgba(79, 255, 173, 0.5);
+}
+
+input:invalid:not(:placeholder-shown) {
+    border-color: rgba(255, 107, 107, 0.5);
+}
+
+/* ============================================================
+   ANIMACIONES
+============================================================ */
 @keyframes fadeUp {
-    from { opacity:0; transform:translateY(25px); }
-    to { opacity:1; transform:translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* ============================================================
+   EFECTOS DE CARGA
+============================================================ */
+.form-container > * {
+    animation: fadeIn 0.5s ease backwards;
+}
+
+.form-container > *:nth-child(1) { animation-delay: 0.1s; }
+.form-container > *:nth-child(2) { animation-delay: 0.2s; }
+.form-container > *:nth-child(3) { animation-delay: 0.3s; }
+
+/* ============================================================
+   ICONO DECORATIVO
+============================================================ */
+.form-icon {
+    text-align: center;
+    font-size: 64px;
+    background: linear-gradient(135deg, #4f7dff, #7b9eff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 20px rgba(79, 125, 255, 0.5));
+    }
+    50% {
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 40px rgba(79, 125, 255, 0.8));
+    }
+}
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+@media (max-width: 768px) {
+    body {
+        padding-top: 80px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .form-container {
+        padding: 40px 25px;
+        margin: 0 auto 40px auto;
+        border-radius: 25px;
+    }
+
+    .form-title {
+        font-size: 32px;
+    }
+
+    .form-subtitle {
+        font-size: 14px;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    input[type="number"],
+    select {
+        padding: 14px 18px;
+        font-size: 15px;
+    }
+
+    button[type="submit"] {
+        padding: 16px;
+        font-size: 16px;
+    }
+
+    label {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-container {
+        padding: 30px 20px;
+    }
+
+    .form-title {
+        font-size: 28px;
+    }
+
+    .form-icon {
+        font-size: 48px;
+    }
+}
+
+/* ============================================================
+   ESTADO DE CARGA DEL BOTÓN
+============================================================ */
+button[type="submit"].loading {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+button[type="submit"].loading::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    left: 50%;
+    margin-left: -10px;
+    margin-top: -10px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ============================================================
+   EFECTOS ADICIONALES DE INPUTS
+============================================================ */
+.input-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.input-icon {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #4f7dff;
+    font-size: 18px;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+/* Línea de progreso decorativa */
+.progress-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #4f7dff, #4fffad);
+    transition: width 0.3s ease;
+}
+
+input:focus ~ .progress-line {
+    width: 100%;
 }
